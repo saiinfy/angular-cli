@@ -57,27 +57,27 @@ jobs:
           output=$(cat test_output.txt)
           echo "Test output: $output"
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
+  # deploy:
+  #   needs: test
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x' # Adjust Node.js version as per your requirement
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20.x' # Adjust Node.js version as per your requirement
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'testingagain1994'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D36DD23D94E84A7390DA0D8D9213FFC8 }}
+  #     - name: Deploy to Azure Web App
+  #       uses: azure/webapps-deploy@v2
+  #       with:
+  #         app-name: 'testingagain1994'
+  #         slot-name: 'Production'
+  #         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D36DD23D94E84A7390DA0D8D9213FFC8 }}
 
-      - name: Print deployed URL
-        run: echo "Deployed at https://testingagain1994.azurewebsites.net"
+  #     - name: Print deployed URL
+  #       run: echo "Deployed at https://testingagain1994.azurewebsites.net"
 
   execute-tests:
     needs: deploy
@@ -87,7 +87,8 @@ jobs:
      
       - name: Run JMeter Tests
         run: |
-          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+          /home/runner/work/apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+
 
       - name: Upload JMeter Results
         uses: actions/upload-artifact@v2
