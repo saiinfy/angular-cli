@@ -28,8 +28,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jre-headless
-          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip -O /opt/jmeter/apache-jmeter-5.5.zip
-          unzip /opt/jmeter/apache-jmeter-5.5.zip -d /opt/jmeter
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
+          unzip apache-jmeter-5.5.zip 
           java -version
           
 
