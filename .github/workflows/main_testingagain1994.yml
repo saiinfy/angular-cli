@@ -33,7 +33,7 @@ jobs:
           java -version
 
       - name: Copy JMeter Test Plan to Output Path
-        run: cp path/to/your/test/script.jmx $GITHUB_WORKSPACE/performance.jmx
+        run: cp ./performance.jmx $GITHUB_WORKSPACE/performance.jmx
 
       - name: Upload JMeter Test Plan
         uses: actions/upload-artifact@v2
