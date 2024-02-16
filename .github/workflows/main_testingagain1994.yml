@@ -41,15 +41,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jre-headless
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
-          mkdir -p $HOME/jmeter
-          unzip apache-jmeter-5.5.zip -d $HOME/jmeter
+          
+          unzip apache-jmeter-5.5.zip 
           
           
 
       - name: Run JMeter Tests
         run: |
-          ls -l
-          $HOME/jmeter/apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+          
+          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
 
       - name: Upload JMeter Results
         uses: actions/upload-artifact@v2
