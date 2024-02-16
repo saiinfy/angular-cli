@@ -38,6 +38,7 @@ jobs:
      
       - name: Setup JMeter
         run: |
+          ls
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jre-headless
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
@@ -48,7 +49,7 @@ jobs:
 
       - name: Run JMeter Tests
         run: |
-          
+          ls
           ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
 
       - name: Upload JMeter Results
