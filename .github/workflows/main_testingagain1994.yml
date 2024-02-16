@@ -31,12 +31,16 @@ jobs:
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
           unzip apache-jmeter-5.5.zip 
           java -version
+
+      - name: Copy JMeter Test Plan to Output Path
+        run: cp path/to/your/test/script.jmx $GITHUB_WORKSPACE/performance.jmx
+
+      - name: Upload JMeter Test Plan
+        uses: actions/upload-artifact@v2
+        with:
+          name: jmeter-test-plan
+          path: $GITHUB_WORKSPACE/performance.jmx
           
-
-
-  
-
-
 
   test:
     needs: build
@@ -81,3 +85,26 @@ jobs:
 
       - name: Print deployed URL
         run: echo "Deployed at https://testingagain1994.azurewebsites.net"
+
+
+
+
+execute-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download JMeter Test Plan
+        uses: actions/download-artifact@v2
+        with:
+          name: jmeter-test-plan
+          path: ${{ github.workspace }}
+
+      - name: Run JMeter Tests
+        run: |
+          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+
+      - name: Upload JMeter Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: jmeter-results
+          path: results.jtl
