@@ -87,6 +87,7 @@ jobs:
         run: echo "Deployed at https://testingagain1994.azurewebsites.net"
 
   execute-tests:
+    needs: deploy
     runs-on: ubuntu-latest
 
     steps:
