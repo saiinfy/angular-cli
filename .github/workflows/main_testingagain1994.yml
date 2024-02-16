@@ -38,20 +38,23 @@ jobs:
      
       - name: Setup JMeter
         run: |
-          pwd
+          
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jre-headless
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
           
           unzip apache-jmeter-5.5.zip 
+          pwd 
+          cd .. 
+          pwd 
+          ls -l
           
           
 
       - name: Run JMeter Tests
         run: |
-          pwd
-          ls -l
-          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+          
+          ./apache-jmeter-5.5/bin/jmeter -n -t ../performance.jmx -l results.jtl
 
       - name: Upload JMeter Results
         uses: actions/upload-artifact@v2
