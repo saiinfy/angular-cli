@@ -31,6 +31,7 @@ jobs:
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
           unzip apache-jmeter-5.5.zip 
           java -version
+          pwd
 
       
           
@@ -45,7 +46,7 @@ jobs:
      
       - name: Run JMeter Tests
         run: |
-          /home/runner/work/apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
 
 
       - name: Upload JMeter Results
