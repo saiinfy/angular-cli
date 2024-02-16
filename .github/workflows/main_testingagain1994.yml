@@ -19,16 +19,33 @@ jobs:
           node-version: '20.x' # Adjust Node.js version as per your requirement
 
       - name: Install dependencies
-        run: npm install 
+        run: |
+          npm install 
+          echo "Package installation successful"
 
-      - name: Install mocha
-        run: npm install mocha -g
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x' # Adjust Node.js version as per your requirement
 
       - name: Run tests
-        run: npm run test
+        id: tests
+        run: |
+          output=$(npm run test)
+          echo "::set-output name=test_output::$output"
+
+      - name: Print test output
+        run: echo "Test output: ${{ steps.tests.outputs.test_output }}"
 
   deploy:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
@@ -45,3 +62,6 @@ jobs:
           app-name: 'testingagain1994'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D36DD23D94E84A7390DA0D8D9213FFC8 }}
+
+      - name: Print deployed URL
+        run: echo "Deployed at https://testingagain1994.azurewebsites.net"
