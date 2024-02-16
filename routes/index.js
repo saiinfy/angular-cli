@@ -14,4 +14,9 @@ router.get('/session', function(req, res, next) {
   res.status(200).send('welcome to github devop');
 });
 
+router.get('/vulnerable', function(req, res, next) {
+  const userMessage = req.query.message;
+  res.status(200).send(`User message: ${userMessage}`);
+});
+
 module.exports = router;
