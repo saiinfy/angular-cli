@@ -35,49 +35,7 @@ jobs:
       
           
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x' # Adjust Node.js version as per your requirement
-
-      - name: Run tests
-        run: |
-          npm install mocha -g 
-          npm run test > test_output.txt
-
-      - name: Print test output
-        run: |
-          output=$(cat test_output.txt)
-          echo "Test output: $output"
-
-  # deploy:
-  #   needs: test
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '20.x' # Adjust Node.js version as per your requirement
-
-  #     - name: Deploy to Azure Web App
-  #       uses: azure/webapps-deploy@v2
-  #       with:
-  #         app-name: 'testingagain1994'
-  #         slot-name: 'Production'
-  #         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D36DD23D94E84A7390DA0D8D9213FFC8 }}
-
-  #     - name: Print deployed URL
-  #       run: echo "Deployed at https://testingagain1994.azurewebsites.net"
+  
 
   execute-tests:
     needs: deploy
