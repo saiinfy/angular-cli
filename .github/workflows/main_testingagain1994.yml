@@ -21,6 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install 
+          
           echo "Package installation successful"
 
   test:
@@ -37,6 +38,7 @@ jobs:
 
       - name: Run tests
         run: |
+          npm install mocha -g 
           npm run test > test_output.txt
 
       - name: Print test output
