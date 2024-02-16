@@ -32,7 +32,7 @@ jobs:
           mkdir -p $HOME/jmeter
           unzip apache-jmeter-5.5.zip -d $HOME/jmeter
           java -version
-          pwd
+          ls -l $HOME/jmeter/apache-jmeter-5.5/bin
 
       
           
