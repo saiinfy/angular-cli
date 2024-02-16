@@ -41,7 +41,7 @@ jobs:
           output=$(npm run test)
           echo "::set-output name=test_output::$output"
 
-      - name: Print test output
+      - name: Print test op
         run: echo "Test output: ${{ steps.tests.outputs.test_output }}"
 
   deploy:
