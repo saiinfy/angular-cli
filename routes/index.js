@@ -10,4 +10,8 @@ router.get('/home', function(req, res, next) {
   res.status(200).send('welcome to session');
 });
 
+router.get('/session', function(req, res, next) {
+  res.status(200).send('welcome to github devops');
+});
+
 module.exports = router;
