@@ -29,7 +29,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jre-headless
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip 
-          unzip apache-jmeter-5.5.zip 
+          mkdir -p $HOME/jmeter
+          unzip apache-jmeter-5.5.zip -d $HOME/jmeter
           java -version
           pwd
 
@@ -46,7 +47,7 @@ jobs:
      
       - name: Run JMeter Tests
         run: |
-          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+          $HOME/jmeter/apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
 
 
       - name: Upload JMeter Results
