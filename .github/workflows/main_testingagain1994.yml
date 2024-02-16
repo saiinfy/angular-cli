@@ -33,13 +33,13 @@ jobs:
           java -version
 
       - name: Copy JMeter Test Plan to Output Path
-        run: cp ./performance.jmx $GITHUB_WORKSPACE/performance.jmx
+        run: cp ./performance.jmx $GITHUB_WORKSPACE/jmeter-test.jmx
 
       - name: Upload JMeter Test Plan
         uses: actions/upload-artifact@v2
         with:
           name: jmeter-test-plan
-          path: $GITHUB_WORKSPACE/performance.jmx
+          path: $GITHUB_WORKSPACE/jmeter-test.jmx
           
 
   test:
@@ -86,9 +86,6 @@ jobs:
       - name: Print deployed URL
         run: echo "Deployed at https://testingagain1994.azurewebsites.net"
 
-
-
-
   execute-tests:
     runs-on: ubuntu-latest
 
@@ -101,7 +98,7 @@ jobs:
 
       - name: Run JMeter Tests
         run: |
-          ./apache-jmeter-5.5/bin/jmeter -n -t performance.jmx -l results.jtl
+          ./apache-jmeter-5.5/bin/jmeter -n -t jmeter-test.jmx -l results.jtl
 
       - name: Upload JMeter Results
         uses: actions/upload-artifact@v2
