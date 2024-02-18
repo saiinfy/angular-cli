@@ -16,7 +16,7 @@ describe('GET /', function() {
   
 });
 
-describe('GET /home', function() {
+describe('GET /gone', function() {
   it('should respond with HTTP 200 status', function(done) {
     request(app)
       .get('/home')
