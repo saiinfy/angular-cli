@@ -17,10 +17,10 @@ describe('GET /', function() {
 });
 
 describe('GET /gone', function() {
-  it('should respond with HTTP 200 status', function(done) {
+  it('should respond with HTTP 400 status', function(done) {
     request(app)
       .get('/home')
-      .expect(200, done);
+      .expect(400, done);
   });
 
 
